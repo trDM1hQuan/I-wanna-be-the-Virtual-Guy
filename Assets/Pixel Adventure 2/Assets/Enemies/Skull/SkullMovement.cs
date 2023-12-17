@@ -5,8 +5,6 @@ using UnityEngine;
 public class SkullMovement : MonoBehaviour
 {
     [SerializeField] private GameObject[] waypoints;
-    //private int currentWaypointIndex = 0;
-
     [SerializeField] private float speed = 2f;
 
     private enum MovemenState { idle, running }
@@ -17,14 +15,12 @@ public class SkullMovement : MonoBehaviour
     [SerializeField] private bool isChasing;
     [SerializeField] private float chaseDistance;
 
-    // Start is called before the first frame update
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
 
@@ -32,24 +28,22 @@ public class SkullMovement : MonoBehaviour
         if (isChasing)
         {
             anim.SetBool("running", true);
-            if (transform.position.x > playerTransform.position.x)
-            {
-                sprite.flipX = true;
-                transform.position += Vector3.left * speed * Time.deltaTime;
-            }
-            if (transform.position.x < playerTransform.position.x)
-            {
-                sprite.flipX = false;
-                transform.position += Vector3.right * speed * Time.deltaTime;
-            }
+            Vector3 direction = new Vector3 (playerTransform.position.x - transform.position.x,0f).normalized;
+            sprite.flipX = (direction.x < 0);
+            transform.position += direction * speed * Time.deltaTime;
+
+             if (Vector2.Distance(transform.position, playerTransform.position) > chaseDistance)
+                {
+                isChasing = false;
+                anim.SetBool("running", false);
+                }
         }
-        else
+         else
         {
             if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
             {
                 isChasing = true;
             }
-            transform.position = transform.position;
         }
     }
 }

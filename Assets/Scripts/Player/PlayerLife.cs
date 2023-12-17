@@ -8,9 +8,6 @@ public class PlayerLife : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    public int maxHealth = 5;
-    public int health;
-
     AudioManager audioManager;
     private void Awake()
     {
@@ -18,15 +15,13 @@ public class PlayerLife : MonoBehaviour
     }
     private void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
-        anim=GetComponent<Animator>();
-        health = maxHealth;
+        rb= GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int damage)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        health -= damage;
-        if (health <= 0)
+        if (collision.gameObject.CompareTag("Trap"))
         {
             Die();
         }

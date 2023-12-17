@@ -7,7 +7,6 @@ public class RunAway : MonoBehaviour
     [SerializeField] private GameObject[] waypoints;
     [SerializeField] private float speed = 2f;
 
-    private enum MovementState { idle, running }
     private SpriteRenderer sprite;
     private Animator anim;
 
@@ -27,15 +26,11 @@ public class RunAway : MonoBehaviour
         if (distanceToPlayer < fleeDistance)
         {
             anim.SetBool("running", true);
-
-            Vector3 fleeDirection = (transform.position - playerTransform.position).normalized;
-
+            Vector3 fleeDirection =new Vector3 (transform.position.x - playerTransform.position.x,0f,0f).normalized;
             transform.position += fleeDirection * speed * Time.deltaTime;
 
-            if (fleeDirection.x > 0)
-                sprite.flipX = true;
-            else
-                sprite.flipX = false;
+            sprite.flipX = (fleeDirection.x < 0);
+
         }
         else
         {

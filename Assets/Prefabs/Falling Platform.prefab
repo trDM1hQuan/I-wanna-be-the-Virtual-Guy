@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3286578316074778603}
   - component: {fileID: 6496009956701674220}
   - component: {fileID: 3019069171555241370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Falling Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0027198792, y: 0.18496108}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -132,7 +132,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.625}
+  m_Size: {x: 1.7552032, y: 0.25507784}
   m_EdgeRadius: 0
 --- !u!251 &8281308559774259196
 PlatformEffector2D:

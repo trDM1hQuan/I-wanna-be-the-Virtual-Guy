@@ -6,12 +6,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-    public float KBForce;
-    public float KBCounter;
-    public float KBTotalTime;
-    public bool KnockFromRight;
-
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
@@ -45,26 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         dirX = Input.GetAxisRaw("Horizontal");
-
-        if (KBCounter <= 0)
-        {
-            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
-        }
-        else
-        {
-            if (KnockFromRight == true)
-            {
-                rb.velocity = new Vector2(-KBForce, KBForce);
-            }
-            if (KnockFromRight == false)
-            {
-                rb.velocity = new Vector2(KBForce, KBForce);
-            }
-
-            KBCounter -= Time.deltaTime;
-        }
-
+        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
         if (Input.GetButtonDown("Jump"))
         {
             if (IsGrounded() || doubleJump)

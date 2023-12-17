@@ -10,6 +10,7 @@ TagManager:
   - Weak Point
   - Fruits
   - Audio
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX
